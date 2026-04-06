@@ -43,7 +43,11 @@ def beräkna():
     except Exception:
         messagebox.showerror("Fel", "Kontrollera dina inmatningar")
 
-
+def uppdatera_faktor_state(event=None):
+    if faktor_val.get() == "Egen":
+        entry_faktor.config(state="normal", bg="white")
+    else:
+        entry_faktor.config(state="disabled", bg="lightgray")
 
 # GUI
 root = tk.Tk()
@@ -72,7 +76,7 @@ tid_enhet.grid(row=1, column=2)
 
 # Droppfaktor (preset + egen)
 
-tk.Label(root, text="Droppfaktor:").grid(row=2, column=0)
+tk.Label(root, text="Aggregat (dr/ml):").grid(row=2, column=0)
 
 faktor_val = ttk.Combobox(root, values=["10", "15", "20", "60", "Egen"], width=7)
 faktor_val.current(2)  # standard = 20
@@ -81,6 +85,12 @@ faktor_val.grid(row=2, column=1)
 entry_faktor = tk.Entry(root)
 entry_faktor.grid(row=2, column=2)
 entry_faktor.insert(0, "20")
+
+# Event för att aktivera/deaktivera egen input
+faktor_val.bind("<<ComboboxSelected>>", uppdatera_faktor_state)
+
+# Säkerställ att rutan är korrekt inaktiv på start
+uppdatera_faktor_state()
 
 # Svarstyp
 
@@ -98,9 +108,7 @@ result_label = tk.Label(root, text="")
 result_label.grid(row=5, column=0, columnspan=3)
 
 # Footer
-footer = tk.Label(root, text="Github Birchcity, ssk-student på UMU, 2026", font=("Arial", 8))
+footer = tk.Label(root, text="av Vanja Öst, ssk-student på UMU, 2026", font=("Arial", 8))
 footer.grid(row=6, column=0, columnspan=3, pady=(10,0))
-
-root.mainloop()
 
 root.mainloop()
