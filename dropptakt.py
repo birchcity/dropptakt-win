@@ -108,7 +108,7 @@ result_label = tk.Label(root, text="")
 result_label.grid(row=5, column=0, columnspan=3)
 
 # Footer
-footer = tk.Label(root, text="av Vanja Öst, ssk-student på UMU, 2026", font=("Arial", 8))
+footer = tk.Label(root, text="Github birchcity, ssk-student på UMU, 2026", font=("Arial", 8))
 footer.grid(row=6, column=0, columnspan=3, pady=(10,0))
 
 root.mainloop()
